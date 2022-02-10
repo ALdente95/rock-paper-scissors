@@ -1,0 +1,49 @@
+.select {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.fire-button {
+    display: flex;
+    background: url(./img/fire.jpg) no-repeat;
+    background-position: center;
+    background-color: lightsteelblue;
+    width: 200px;
+    height: 200px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.water-button {
+    display: flex;
+    background: url(./img/water.jpg) no-repeat;
+    background-position: center;
+    background-color: lightgoldenrodyellow;
+    height: 200px;
+    width: 200px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.grass-button {
+    display: flex;
+    background: url(./img/grass.jpg) no-repeat;
+    background-position: center;
+    background-color: lightseagreen;
+    height: 200px;
+    width: 200px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.reset {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+}
