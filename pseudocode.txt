@@ -1,0 +1,4 @@
+Ask for user's input
+Give computer a random rock/paper/scissors
+Do a compare to see who won
+Display the result
