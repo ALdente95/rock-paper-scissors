@@ -1,44 +1,46 @@
-function getRandomChoice() {
-    const choices = ["fire", "water", "grass"];
-    let comChoice = Math.floor(Math.random(choices));
+let userScore = 0;
+let comScore = 0;
+
+function computerPlay (){
+    const comChoice = ["rock", "paper", "scissors"];
+    let randomNumber = Math.floor(Math.random()*comChoice.length);
+    return comChoice[randomNumber];
 }
 
-let playerScore = 0;
-let comScore = 0;
-let roundWinner = '';
-
-function playRound(playerSelect, comSelect){
-    if(playerSelect == comChoice) {
-        roundWinner = 'tie';
+function playRound (playerSelection,computerSelection){
+    console.log(playerSelection);
+    console.log(computerSelection);
+    if (playerSelection == computerSelection){
+        return "You tie!";
     }
-    else if(playerSelect == "fire" && comSelect == "grass" ||
-    playerSelect == "water" && comSelect == "fire" ||
-    playerSelect == "grass" && comSelect == "water")
-    {
-        playerScore ++;
-        roundWinner = 'player!';
+    else if(playerSelection == "rock" && computerSelection == "paper" ||
+    playerSelection == "scissors" && computerSelection == "rock" ||
+    playerSelection == "paper" && computerSelection == "rock"){
+        comScore += 1;
+        return "You lose!";
     }
     else{
-        comScore ++;
-        roundWinner = 'computer!';
+        userScore += 1;
+        return "You win!"
     }
-    updateScoreboard(roundWinner, playerSelect, comSelect);
 }
 
-function gameOver(){
-    return playerScore == 3 || comScore == 3; 
+function playerPlay(){
+    let playerInput = prompt("Rock, Paper or Scissors: ").toLowerCase();
+    return playerInput;
+}
+function game(){
+    for (let i = 0; i < 5;){
+        alert(playRound(playerPlay(),computerPlay()) + "\nYour score: " + userScore + " | Computer score: " + comScore);
+        if (userScore ==3){
+            i = 5;
+            alert("You won the game!");
+        }
+        else if (comScore ==3){
+            i = 5;
+            alert("You lost the game!");
+        }
+        }
 }
 
-function whenClick(playerSelect){
-    const comSelect = getRandomChoice();
-
-}
-const fireBtn = document.getElementsByClassName('fire-button');
-const waterBtn = document.getElementsByClassName('water-button');
-const grassBtn = document.getElementsByClassName('grass-button');
-
-fireBtn.addEventListener('click', ()=> whenClick('fire'));
-waterBtn.addEventListener('click', ()=> whenClick('water'));
-grassBtn.addEventListener('click', ()=> whenClick('grass'));
-
-
+game();
