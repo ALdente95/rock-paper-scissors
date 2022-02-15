@@ -1,46 +1,118 @@
 let userScore = 0;
 let comScore = 0;
+let reset = false;
+const uScore = document.querySelector('#user-score');
+const cScore = document.querySelector('#com-score');
+const uSelect = document.querySelector('#user-select');
+const cSelect = document.querySelector('#com-select');
+const result = document.querySelector('#result');
+const message = document.querySelector('#round-msg');
 
-function computerPlay (){
+const start = document.querySelector('#start');
+const restart = document.querySelector('#restart');
+
+uScore.textContent = '0';
+cScore.textContent = '0';
+
+function resetGame(e){
+    userScore = 0;
+    comScore = 0;
+    uScore.textContent = '0';
+    cScore.textContent = '0';
+    uSelect.textContent = '';
+    cSelect.textContent = '';
+    result.textContent = '';
+    message.textContent='';
+    reset = true;
+    return reset;
+    return userScore;
+    return comScore;
+}
+
+function startGame(e){
+    reset = true;
+    return reset;
+}
+
+function playRound(e){
     const comChoice = ["rock", "paper", "scissors"];
     let randomNumber = Math.floor(Math.random()*comChoice.length);
-    return comChoice[randomNumber];
-}
 
-function playRound (playerSelection,computerSelection){
-    console.log(playerSelection);
-    console.log(computerSelection);
-    if (playerSelection == computerSelection){
-        return "You tie!";
-    }
-    else if(playerSelection == "rock" && computerSelection == "paper" ||
-    playerSelection == "scissors" && computerSelection == "rock" ||
-    playerSelection == "paper" && computerSelection == "rock"){
-        comScore += 1;
-        return "You lose!";
-    }
-    else{
-        userScore += 1;
-        return "You win!"
-    }
+if (userScore === 5){
+    result.textContent = "You win !"
 }
-
-function playerPlay(){
-    let playerInput = prompt("Rock, Paper or Scissors: ").toLowerCase();
-    return playerInput;
+else if(comScore === 5){
+    result.textContent = "You lose !"
 }
-function game(){
-    for (let i = 0; i < 5;){
-        alert(playRound(playerPlay(),computerPlay()) + "\nYour score: " + userScore + " | Computer score: " + comScore);
-        if (userScore ==3){
-            i = 5;
-            alert("You won the game!");
+else if(reset){
+    if(e.target.id === "rock"){
+        if(comChoice[randomNumber] ==="rock"){
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Tie!";
         }
-        else if (comScore ==3){
-            i = 5;
-            alert("You lost the game!");
+        else if(comChoice[randomNumber] === "paper"){
+            comScore++;
+            cScore.textContent = comScore;
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Paper beats rock!";
+        }
+        else if(comChoice[randomNumber] === "scissors"){
+            userScore++;
+            uScore.textContent = userScore;
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Rock beats scissors!";
         }
         }
+    else if(e.target.id === "paper"){
+        if(comChoice[randomNumber] ==="paper"){
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Tie!";
+        }
+        else if(comChoice[randomNumber] === "scissors"){
+            comScore++;
+            cScore.textContent = comScore;
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Scissors beats paper!";
+        }
+        else if(comChoice[randomNumber] === "rock"){
+            userScore++;
+            uScore.textContent = userScore;
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Paper beats rock!";
+        }
+        }
+    else if(e.target.id === "scissors"){
+        if(comChoice[randomNumber] ==="scissors"){
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Tie!";
+        }
+        else if(comChoice[randomNumber] === "rock"){
+            comScore++;
+            cScore.textContent = comScore;
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Rock beats scissors!";
+        }
+        else if(comChoice[randomNumber] === "paper"){
+            userScore++;
+            uScore.textContent = userScore;
+            uSelect.textContent = e.target.id;
+            cSelect.textContent = comChoice[randomNumber];
+            message.textContent = "Scissors beats paper!";
+        }
+        }
+}
 }
 
-game();
+
+const btns = Array.from(document.querySelectorAll('button'));
+btns.forEach(button => button.addEventListener('click',playRound));
+start.addEventListener('click', startGame);
+restart.addEventListener('click', resetGame);

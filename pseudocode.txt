@@ -1,4 +1,14 @@
-Ask for user's input
-Give computer a random rock/paper/scissors
-Do a compare to see who won
-Display the result
+--Rock paper scissors 1--
+Ask for user's input with a prompt
+Store user's input
+Give computer a random choice of rock/paper/scissors
+Evaluate round winner
+Winner will score a point
+Display and track the scores 
+Best of 5 ends the game
+
+--Rock paper scissors 2--
+allows user to click buttons rock, paper or scissors
+evaluate user choice with computer choice
+winner score will increase by 1
+game ends at score 5
